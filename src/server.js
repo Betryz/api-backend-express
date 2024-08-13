@@ -1,17 +1,17 @@
 // const express = require('express');
 
 import express from 'express'
+import authRouter from './routers/authRouter.js'
+import accountRouter from './routers/accountRouter.js'
+
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.json({
 
-        message: "Olá mundo Express!",
-        success: "Sucesso ao executar API"
-    
-    })
-} )
+app.use('/auth' , authRouter)
+
+app.use('/account' , accountRouter)
+
 
 app.listen(3000, () => {
     console.log('Servidor Rodando em http://localhost:3000')
