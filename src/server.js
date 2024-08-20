@@ -8,7 +8,7 @@ import { ENVIRONMENT, PORT, HOST } from './config.js';
 
 const app = express();
 
-
+app.get('/' , (req, res) => {res.json({message: "Bem vindo a API"})})
 app.use('/auth', authRouter)
 
 app.use('/account', accountRouter)
