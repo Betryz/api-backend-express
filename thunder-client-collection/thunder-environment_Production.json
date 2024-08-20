@@ -1,0 +1,14 @@
+{
+    "clientName": "Thunder Client",
+    "environmentName": "Production",
+    "environmentId": "ca262afa-9594-45a9-8641-cea202edb6a7",
+    "dateExported": "2024-08-20T18:03:49.442Z",
+    "version": "1.2",
+    "variables": [
+        {
+            "name": "BASE_URL",
+            "value": "https://api-backend-express.onrender.com/account/1"
+        }
+    ],
+    "ref": "WvAPAMoz0XxTR4eSXMoHozdPrxxbOglCTCv-7fSRlxQQppZ21k3OSdAhVKWMdsIO"
+}

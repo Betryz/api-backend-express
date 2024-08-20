@@ -1,6 +1,6 @@
 const list =  (req, res) => {
     res.json({
-        message: "Rota de GET Account/List"
+        message: "Rota de GET Account/List Teste deploy"
     })
 }
 
