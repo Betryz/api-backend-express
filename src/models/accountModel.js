@@ -24,6 +24,24 @@ return account
 
 }
 
+export const createAccount = async () => {
+
+    const account = await prisma.account.create({
+        data: {
+            service,
+            username,
+            pass,
+            logo_image,
+            usuario: {
+                connect: {id: user_id}
+            }
+
+        }
+    })
+
+    return account
+}
+
 
 
 
