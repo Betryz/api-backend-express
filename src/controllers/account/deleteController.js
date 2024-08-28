@@ -2,7 +2,7 @@ import { deleteAccount } from "../../models/accountModel.js"
 
 const deleteController  =  async (req, res) => {
     const {id} = req.params
-    const account = await deleteAccount(+id).delete
+    const account = await deleteAccount(+id)
 
     
 

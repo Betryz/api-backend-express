@@ -18,7 +18,7 @@ export const getIdAccount = async (id) => {
 
 export const deleteAccount = async (id) => {
 
-    const account = await prisma.account.findUnique( {where:  {id} });
+    const account = await prisma.account.delete({where:  {id} });
 
 return account
 
