@@ -7,9 +7,13 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --env-file=.env --watch src/server.js",
-    "prisma:pull": "npx prisma db pull",
-    "prisma:push": "npx prisma db push",
-    "prisma:generate": "npx prisma generate"
+    "prisma:pull": "npx prisma db pull --schema=./prisma/schema-production.prisma",
+    "prisma:push": "npx prisma db push --schema=./prisma/schema-production.prisma",
+    "prisma:generate": "npx prisma generate --schema=./prisma/schema-production.prisma",
+
+    "prisma:local:pull": "npx prisma db pull --schema=./prisma/schema-local.prisma",
+    "prisma:local:push": "npx prisma db push --schema=./prisma/schema-local.prisma",
+    "prisma:local:generate": "npx prisma generate --schema=./prisma/schema-local.prisma"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
   "homepage": "https://github.com/Betryz/api-backend-express#readme",
   "dependencies": {
     "@prisma/client": "^5.19.0",
+    "cors": "^2.8.5",
     "express": "^4.19.2"
   },
   "devDependencies": {
