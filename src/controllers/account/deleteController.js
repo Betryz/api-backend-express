@@ -13,7 +13,8 @@ const deleteController  =  async (req, res) => {
     })
 
     res.json({
-        message: `Conta ${id} deletada com sucesso`
+        message: `Conta ${id} deletada com sucesso`,
+        account
 
     })
 }

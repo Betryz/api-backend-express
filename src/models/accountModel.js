@@ -24,22 +24,36 @@ return account
 
 }
 
-export const createAccount = async () => {
+export const createAccount = async (account) => {
 
-    const account = await prisma.account.create({
-        data: {
-            service,
-            username,
-            pass,
-            logo_image,
-            usuario: {
-                connect: {id: user_id}
-            }
+    const result = await prisma.account.create({
+        data: account
+    })
 
+    return result
+}
+
+
+export const updateAccount = async (account) => {
+
+    const result = await prisma.account.update({
+        data: account,
+        where:{
+            id: account.id
         }
     })
 
-    return account
+    return result
+}
+
+
+export const signup = async (auth) => {
+
+    const result = await prisma.user.create({
+        data: auth
+    })
+
+    return result
 }
 
 

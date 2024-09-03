@@ -1,18 +1,19 @@
 import { createAccount } from "../../models/accountModel.js"
 
-const create = (req, res) => {
-    const {service, username, logo_image, pass, user_id} = req.body
+const create = async  (req, res) => {
+    const account = req.body
 
-    const account = createAccount( service, username, logo_image, pass, user_id); 
+    const result = await createAccount( account); 
 
+    if(!result){
+        return res.status(401).json({
+            error: "Erro ao criar conta!"
+        })
+    }
 
-
-
-
-
-
-    res.json({
-        message: "Rota de POST Account"
+   return res.json({
+        success: "Conta criada com sucesso!",
+        account: result
     })
 }
 export default create 
