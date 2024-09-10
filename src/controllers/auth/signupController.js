@@ -1,6 +1,6 @@
 import { signup } from "../../models/authModel.js"
 
-const signupAccount = async (req, res) => {
+const signupAccount = async (req, res, next) => {
     const user = req.body
 
     try {
@@ -18,10 +18,7 @@ const signupAccount = async (req, res) => {
         })
     } catch (error) {
 
-        console.error(error)
-        return res.status(500).json({
-            error: `Erro no servidor`
-        })
+       next(error)
 
 
     }

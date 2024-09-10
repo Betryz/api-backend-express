@@ -1,6 +1,6 @@
 import { listAuth } from "../../models/authModel.js"
 
-const list = async (req, res) => {
+const list = async (req, res, next) => {
 
     try {
         const user = await listAuth()
@@ -11,10 +11,8 @@ const list = async (req, res) => {
             user
         })
     }catch(error){
-        console.error(error)
-        return res.status(500).json({
-            error: `Erro no servidor`
-        })
+        next(error)
+       
 
     }
     
