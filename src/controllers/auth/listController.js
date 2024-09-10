@@ -1,14 +1,23 @@
-import { listAuth } from "../../models/authModel.js" 
+import { listAuth } from "../../models/authModel.js"
 
 const list = async (req, res) => {
 
-    const user = await listAuth()
+    try {
+        const user = await listAuth()
+
+
+        return res.json({
+            message: "Contas listadas com sucesso!",
+            user
+        })
+    }catch(error){
+        console.error(error)
+        return res.status(500).json({
+            error: `Erro no servidor`
+        })
+
+    }
     
-    
-   return res.json({
-        message: "Contas listadas com sucesso!",
-        user
-    })
 }
 
 export default list
