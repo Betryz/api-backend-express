@@ -1,10 +1,26 @@
-import { getIdAccount } from "../../models/accountModel.js"
+import { getIdAccount, accountValidateId } from "../../models/accountModel.js"
 
 const id = async (req, res, next) => {
     
     try {
         const { id } = req.params
-        const account = await getIdAccount(+id)
+
+        
+        const accountValidated = accountValidateId(+id)
+
+
+        if(!accountValidated.success){
+            return res.status(401).json({
+                error: "Erro ao buscar um serviço!",
+                fieldErrors: accountValidated.error.flatten().fieldErrors
+            })
+
+        }
+
+
+
+
+        const account = await getIdAccount(accountValidated.data.id)
 
 
         if (!account)

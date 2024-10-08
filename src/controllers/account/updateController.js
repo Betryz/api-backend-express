@@ -1,4 +1,4 @@
-import { updateAccount } from "../../models/accountModel.js";
+import { updateAccount, accountValidateToUpdate } from "../../models/accountModel.js";
 
 const update = async (req, res, next) => {
 
@@ -13,7 +13,21 @@ const update = async (req, res, next) => {
         account.id = +id
 
 
-        const result = await updateAccount(account);
+
+        const accountValidated = accountValidateToUpdate(account)
+
+        console.log(accountValidated)
+
+        if(!accountValidated.success){
+            return res.status(401).json({
+                error: "Erro ao modificar conta!",
+                fieldErrors: accountValidated.error.flatten().fieldErrors
+            })
+
+        }
+
+
+        const result = await updateAccount(accountValidated.data);
 
         if (!result) {
             return res.status(401).json({

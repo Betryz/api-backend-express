@@ -19,7 +19,7 @@ const create = async (req, res, next) => {
 
         }
 
-        const result = await createAccount(account);
+        const result = await createAccount(accountValidated.data);
 
         if (!result) {
             return res.status(401).json({
