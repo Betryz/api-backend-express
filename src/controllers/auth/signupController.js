@@ -1,26 +1,37 @@
-import { signup } from "../../models/authModel.js"
 
-const signupAccount = async (req, res, next) => {
-    const user = req.body
+import { userValidateToCreate, signUp } from "../../models/authModel.js"
+import { v4 as uuid } from 'uuid'
+import bcrypt from "bcrypt"
 
-    try {
-        const result = await signup(user);
+const signup = async (req, res, next) => {
+    try{
+        const newUser = req.body
 
-        if (!result) {
+        const userValidated = userValidateToCreate(newUser)
+
+        if(userValidated?.error)
+            return res.status(401).json({
+                error: "Erro ao criar usuário!",
+                fieldErrors: userValidated.error.flatten().fieldErrors
+            })
+
+            userValidated.data.public_id = uuid()
+            userValidated.data.pass = bcrypt.hashSync(userValidated.data.pass, 10)
+
+        const result = await signUp(userValidated.data)
+
+        if(!result)
             return res.status(401).json({
                 error: "Erro ao criar conta!"
             })
-        }
 
         return res.json({
             success: "Conta criada com sucesso!",
             user: result
         })
-    } catch (error) {
-
-       next(error)
-
-
+    } catch(error) {
+        next(error)
     }
 }
-export default signupAccount
+
+export default signup
