@@ -68,9 +68,25 @@ export const userValidateToCreate = (user) => {
 }
 
 
+export const userValidateToLogin = (user) => {
+    const partialUserShema = userSchema.partial({ id: true, public_id: true, avatar: true, name:true })
+
+    return partialUserShema.safeParse(user)
+}
+
+
+
 export const getByPublicId = async (public_id) => {
 
     const user = await prisma.user.findUnique({ where: { public_id } });
+
+    return user
+
+}
+
+export const getByEmail = async (email) => {
+
+    const user = await prisma.user.findUnique({ where: { email} });
 
     return user
 
